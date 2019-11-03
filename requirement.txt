@@ -1,0 +1,27 @@
+// Controller
+@RestController
+public class TheController {
+@RequestMapping
+@ReturnCode
+public InvoiceViewModel purchaseSomeItems(@RequestBody PurchasingItem purchasingItem) {
+    return serviceLayer.processPurchase(purchasingItem);
+ }
+ 
+ //serviceLayer
+ public InvoiceViewModel processPurchase(PurchasingItem purchasingItem) {
+    //EVERYTHING HAPPENS HERE!!!!
+    // create an instance of an invoiceviewmodel
+    // add all the properties to it
+    // figure out which item the purchase is
+    Item item = getTheItemFromTheDatabase(purchasingItem.getItemType(), purchasingItem.getItemId());
+    // apply all business rules
+    invoiceViewModel.setUnitPrice(item.getUnitPrice());
+    invoiceViewModel.setSubTotal(purchasingItem.getQuantity(), item.getUnitPrice());
+    // do all calculations
+    // update all appropriate database tables/tuples/records
+    // insert into the invoice table
+    // return the final InvoiceViewModel
+    //  should have everything from the invoice table
+    //  PLUS the item
+ 
+ }
